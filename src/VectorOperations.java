@@ -4,7 +4,7 @@ import java.util.Set;
 
 public abstract class VectorOperations{
 
-	public static Vector addVectorsModulo(Vector vector1, Vector vector2) throws RuntimeException {
+	public static Vector addVectorsModulo(Vector vector1, Vector vector2) {
 		if(vector1.mod != vector2.mod || vector1.dim != vector2.dim)
 			throw new RuntimeException("improper vectors");
 		
@@ -21,7 +21,7 @@ public abstract class VectorOperations{
 		return new Vector(vector.mod, cords);
 	}
 	
-	public static int HammingDistance(Vector vector1, Vector vector2) throws RuntimeException{
+	public static int HammingDistance(Vector vector1, Vector vector2) {
 		if(vector1.mod != vector2.mod || vector1.dim != vector2.dim)
 			throw new RuntimeException("improper vectors");
 		
@@ -33,7 +33,7 @@ public abstract class VectorOperations{
 		return distance;
 	}
 	
-	public static LinkedList<Vector> matrixToListOfVectors(int[][] m, int mod) throws RuntimeException{
+	public static LinkedList<Vector> matrixToListOfVectors(int[][] m, int mod) {
 		checkMatrixModAndDim(m, mod);
 		
 		LinkedList<Vector> listOfVectors = new LinkedList<>();
@@ -43,7 +43,22 @@ public abstract class VectorOperations{
 		return listOfVectors;
 	}
 	
-	private static void checkMatrixModAndDim(int[][] m, int mod) throws RuntimeException{
+	public static boolean listDoesNotContainVector(LinkedList<Vector> list, Vector v) {
+		for(Vector e : list)
+		{
+			boolean vectorsAreEqual = true;
+			for(int i = 0; i < v.dim; i++)
+				if(e.cords[i] != v.cords[i]) {
+					vectorsAreEqual = false;
+					break;
+				}
+			if(vectorsAreEqual)
+				return false;
+		}
+		return true;
+	}
+	
+	private static void checkMatrixModAndDim(int[][] m, int mod){
 		for(int[] row : m)
 			for(int k : row)
 				if(k >= mod)
