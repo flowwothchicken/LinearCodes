@@ -21,7 +21,7 @@ public abstract class VectorOperations{
 		return new Vector(vector.mod, cords);
 	}
 	
-	public static int HammingDistance(Vector vector1, Vector vector2) {
+	public static int hammingDistance(Vector vector1, Vector vector2) {
 		if(vector1.mod != vector2.mod || vector1.dim != vector2.dim)
 			throw new RuntimeException("improper vectors");
 		
@@ -56,6 +56,17 @@ public abstract class VectorOperations{
 				return false;
 		}
 		return true;
+	}
+	
+	
+	public static int[][] baseToMatrix(LinkedList<Vector> base){
+		int[][] g = new int[base.size()][base.get(0).dim];
+		
+		for(int i = 0; i < base.size(); i++)
+			for(int j = 0; j < base.get(0).dim; j++)
+				g[i][j] = base.get(i).cords[j];
+		
+		return g;
 	}
 	
 	private static void checkMatrixModAndDim(int[][] m, int mod){
