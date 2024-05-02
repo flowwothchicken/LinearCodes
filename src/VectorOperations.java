@@ -69,6 +69,34 @@ public abstract class VectorOperations{
 		return g;
 	}
 	
+	public static LinkedList<Vector> encryptListOfVectors(LinkedList<Vector> vectors, int[][] G){
+		LinkedList<Vector> res = new LinkedList<>();
+		for(Vector v : vectors)
+			res.add(encryptVector(v, G));
+		
+		return res;
+	}
+	
+	public static int[][] transpose(int[][] m){
+		int [][] t = new int[m[0].length][m.length];
+		for(int i = 0; i < m.length; i++)
+			for(int j = 0; j < m[0].length; j++)
+				t[j][i] = m[i][j];
+		return t;
+	}
+	
+	private static Vector encryptVector(Vector v, int[][] G) {
+		int[] cords = new int[G[0].length];
+		for(int i = 0; i < G[0].length; i++) {
+			int value = 0;
+			for(int j = 0; j < v.dim; j++)
+				value = ModuloOperations.addModulo(value, ModuloOperations.multiplyModulo(v.cords[j], G[j][i], v.mod), v.mod);
+			cords[i] = value;
+		}
+		
+		return new Vector(v.mod, cords);
+	}
+	
 	private static void checkMatrixModAndDim(int[][] m, int mod){
 		for(int[] row : m)
 			for(int k : row)
