@@ -5,7 +5,7 @@ public class Main {
 		//Zadanko5.solve();
 		//Zadanko6.solve();
 		//Zadanko7.solve();
-		Zadanko8.solve();
+		//Zadanko8.solve();
 	}
 	
 }

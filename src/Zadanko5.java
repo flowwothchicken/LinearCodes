@@ -5,7 +5,7 @@ public abstract class Zadanko5 {
 	public static void solve() {
 		Vector v = new Vector(3, new int[] {1, 2, 0, 1});
 		Vector w = new Vector(3, new int[] {0, 0, 0, 1});
-		int d = VectorOperations.HammingDistance(v, w);
+		int d = VectorOperations.hammingDistance(v, w);
 		System.out.println("odleglosc Hamminga dla wektorow " + v + " i " + w + " to " + d);
 		
 		int[][] m = {{1, 2, 1, 2, 0}, {1, 1, 1, 1, 1}, {0, 0, 2, 1, 1}, {2, 2, 2, 1, 0}};
@@ -18,8 +18,8 @@ public abstract class Zadanko5 {
 			for(int j = i+1; j < vectors.size(); j++) {
 				Vector u = vectors.get(i);
 				Vector e = vectors.get(j);
-				if(VectorOperations.HammingDistance(u, e) < minDistance) {
-					minDistance = VectorOperations.HammingDistance(u, e);
+				if(VectorOperations.hammingDistance(u, e) < minDistance) {
+					minDistance = VectorOperations.hammingDistance(u, e);
 					firstId = i;
 					secondId = j;
 				}
